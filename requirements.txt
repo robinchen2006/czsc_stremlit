@@ -1,9 +1,7 @@
-czsc>=0.9.43
+czsc>=0.9.52
 streamlit
-langchain
-deeplake
-openai
-tiktoken
 python-dotenv
 streamlit_option_menu
 stqdm
+plotly
+numpy

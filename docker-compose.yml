@@ -1,27 +1,27 @@
 version: '3.7'
 
 services:
-  czsc-stremlit_1:
-    image: czsc-stremlit:0.0.1
-    container_name: czsc-stremlit_1
+  czsc-streamlit_1:
+    image: czsc-streamlit:0.0.1
+    container_name: czsc-streamlit_1
     volumes:
       - data-volume:/app/market-data
       - streamlit-config-volume:/app/.streamlit
     expose:
       - "80"
 
-  czsc-stremlit_2:
-    image: czsc-stremlit:0.0.1
-    container_name: czsc-stremlit_2
+  czsc-streamlit_2:
+    image: czsc-streamlit:0.0.1
+    container_name: czsc-streamlit_2
     volumes:
       - data-volume:/app/market-data
       - streamlit-config-volume:/app/.streamlit
     expose:
       - "80"
 
-  czsc-stremlit_3:
-    image: czsc-stremlit:0.0.1
-    container_name: czsc-stremlit_3
+  czsc-streamlit_3:
+    image: czsc-streamlit:0.0.1
+    container_name: czsc-streamlit_3
     volumes:
       - data-volume:/app/market-data
       - streamlit-config-volume:/app/.streamlit
@@ -35,9 +35,9 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - czsc-stremlit_1
-      - czsc-stremlit_2
-      - czsc-stremlit_3
+      - czsc-streamlit_1
+      - czsc-streamlit_2
+      - czsc-streamlit_3
 
 volumes:
   data-volume:
@@ -45,10 +45,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: 'D:/data/czsc_stremlit-data'
+      device: 'D:/data/czsc_streamlit-data'
   streamlit-config-volume:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: 'D:/data/czsc_stremlit-config'
+      device: 'D:/data/czsc_streamlit-config'
