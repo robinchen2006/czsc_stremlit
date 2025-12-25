@@ -31,6 +31,11 @@ signals_module = os.environ.get("signals_module_name", "czsc.signals")
 # ======================================================================================================================
 
 @st.cache_resource()
+def get_show_signal(**kwargs):
+    """工厂函数用于缓存 ShowSignal 实例"""
+    return ShowSignal(**kwargs)
+
+
 class ShowSignal:
     def __init__(self, **kwargs) -> None:
         self.base_freq = kwargs.get("base_freq")
@@ -132,8 +137,8 @@ def show_signal_functions():
             st.warning("请设置观察参数")
             st.stop()
 
-        ss = ShowSignal(base_freq=base_freq, symbol=symbol, signal=signal.strip('"'),
-                        bar_sdt=bar_sdt, sdt=sdt, edt=edt, cache_key=cache_key)
+        ss = get_show_signal(base_freq=base_freq, symbol=symbol, signal=signal.strip('"'),
+                             bar_sdt=bar_sdt, sdt=sdt, edt=edt, cache_key=cache_key)
         st.caption(f"cache_keys: {ss.cache_keys}")
         st.plotly_chart(ss.chart.fig, use_container_width=True, config=plotly_config)
 

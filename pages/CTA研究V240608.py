@@ -49,6 +49,11 @@ base_path.mkdir(exist_ok=True, parents=True)
 
 
 @st.cache_resource()
+def get_show_signal(**kwargs):
+    """工厂函数用于缓存 ShowSignal 实例"""
+    return ShowSignal(**kwargs)
+
+
 class ShowSignal:
     def __init__(self, **kwargs) -> None:
         self.base_freq = kwargs.get("base_freq")
@@ -176,7 +181,7 @@ def show_signal_observation():
         st.warning("请设置观察参数")
         st.stop()
 
-    ss = ShowSignal(
+    ss = get_show_signal(
         base_freq=base_freq,
         symbol=symbol,
         signal=signal.strip('"'),
